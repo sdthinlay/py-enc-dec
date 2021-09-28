@@ -1,4 +1,4 @@
-from cryptography.fernet import Fernet, InvalidToken
+# Import cryptography library
 
 from app.key_utils import key32, key64
 
@@ -7,7 +7,8 @@ class Decryptor:
     def __init__(self, key):
         key32_ = key32(key)
         key64_ = key64(key32_)
-        self.__fernet = Fernet(key64_)
+
+        # We need to do something with the key...
 
     def _decrypt(self, data: bytes) -> bytes:
         """
@@ -17,12 +18,7 @@ class Decryptor:
         :param data: Data to be decrypted
         :return: Decrypted data
         """
-        try:
-            decrypted_data = self.__fernet.decrypt(data)
-            return decrypted_data
-        except InvalidToken:
-            print('Error: invalid key, decryption not possible!')
-            raise
+        raise NotImplementedError()
 
     def decrypt(self, data) -> bytes:
         """

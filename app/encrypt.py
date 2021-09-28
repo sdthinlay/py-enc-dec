@@ -1,4 +1,4 @@
-from cryptography.fernet import Fernet
+# Import cryptography library
 
 from app.key_utils import key32, key64
 
@@ -7,7 +7,8 @@ class Encryptor:
     def __init__(self, key):
         key32_ = key32(key)
         key64_ = key64(key32_)
-        self.__fernet = Fernet(key64_)
+
+        # We need to do something with the key...
 
     def _encrypt(self, data: bytes) -> bytes:
         """
@@ -16,8 +17,7 @@ class Encryptor:
         :param data: Data to be encrypted
         :return: Encrypted data
         """
-        encrypted_data = self.__fernet.encrypt(data)
-        return encrypted_data
+        raise NotImplementedError()
 
     def encrypt(self, data) -> bytes:
         """
