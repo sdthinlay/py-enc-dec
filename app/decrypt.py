@@ -13,7 +13,9 @@ class Decryptor:
     def _decrypt(self, data: bytes) -> bytes:
         """
         This method performs the actual decryption on the {data} object.
-        It raises InvalidToken if it can't decrypt properly.
+        It raises InvalidToken if it can't decrypt properly. If {data}
+        is not a bytes object, a TypeError is raised by the decrypt
+        method.
 
         :param data: Data to be decrypted
         :return: Decrypted data
@@ -27,14 +29,11 @@ class Decryptor:
         initialiser. If the parameter {data} is a bytes object, it will
         be used to decrypt. It can also be an object that has the method
         {read_data}, which takes no arguments and returns a bytes object.
-        If it is neither, a TypeError is raised.
 
         :param data: Encrypted data
         :return: Decrypted data as a bytes object
         """
         if hasattr(data, 'read_data'):
             data = data.read_data()
-        elif not isinstance(data, bytes):
-            raise TypeError('Invalid input type')
 
         return self._decrypt(data)
