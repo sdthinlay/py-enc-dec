@@ -1,3 +1,4 @@
+import binascii
 import unittest
 
 from app.encrypt import Encryptor
@@ -20,7 +21,7 @@ class TestEncryption(unittest.TestCase):
         try:
             _ = Encryptor(self.plaintext_key)
             self.assertTrue(True)
-        except ValueError:
+        except binascii.Error:
             self.assertFalse(True)
 
     def test_encrypt_string_expect_bytes(self):

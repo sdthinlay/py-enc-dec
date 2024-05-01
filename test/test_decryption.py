@@ -1,3 +1,4 @@
+import binascii
 import unittest
 # Import cryptography library
 from app.decrypt import Decryptor
@@ -21,7 +22,7 @@ class TestDecryption(unittest.TestCase):
         try:
             _ = Decryptor(self.plaintext_key)
             self.assertTrue(True)
-        except ValueError:
+        except binascii.Error:
             self.assertFalse(True)
 
     def test_decrypt_bytes_expect_bytes(self):

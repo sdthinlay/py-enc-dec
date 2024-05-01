@@ -31,10 +31,10 @@ class Encryptor:
         :param data: Data to encrypt
         :return: Encrypted data as a bytes object
         """
-        if isinstance(data, str):
-            data = data.encode()
-        elif hasattr(data, 'read_data'):
-            data = data.read_data()
+        if isinstance(data, str):  # check to see if the data is string or not
+            data = data.encode()  # if it is a string convert to bytes
+        elif hasattr(data, 'read_data'):  # check if the data obj has the method read_data
+            data = data.read_data() # reading data in bytes
         else:
             raise TypeError('Invalid input type')
 
